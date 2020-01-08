@@ -26,6 +26,7 @@
 
   async function RestTest() {
     try {
+      console.log('Send.');
       const response = await client.post('http://52.141.25.13:50703/api/prob', {
         gameId: 31,
         gameOption: "{\n   \"BetPerLine\" : 200,\n   \"CoinValue\" : 1,\n   \"GameOption\" : [ 0 ],\n   \"SelectLine\" : 50\n}\n",
