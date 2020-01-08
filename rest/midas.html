@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rest Test - Midas</title>
+  <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+
+  <h1>Rest Test - Midas</h1>
+
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  let client = axios.create({
+    //baseURL: 'https://resource.bet4enjoy.com/',
+    timeout: 2500,
+    //headers: { 'Access-Control-Allow-Origin': '*' },
+    //withCredentials: false,
+    responseType: 'json'
+  });
+  client.defaults.headers.post['Content-Type'] = 'application/json';
+
+  async function RestTest() {
+    try {
+      const response = await client.post('http://52.141.25.13:50703/api/prob', {
+        gameId: 31,
+        gameOption: "{\n   \"BetPerLine\" : 200,\n   \"CoinValue\" : 1,\n   \"GameOption\" : [ 0 ],\n   \"SelectLine\" : 50\n}\n",
+        probStep: 0,
+        slotInfoGameData: {
+          gameData: [0, 0, 0],
+          jackpotProgress: [
+            1200.0099999999998,
+            200.01499999999993,
+            60.025000000000013,
+            32.04999999999999
+          ],
+          jackpotScore: 0,
+          totalFreeGameCount: 0,
+          totalFreeGameScore: 0,
+          totalScore: 0,
+          userData: [],
+          winReelInfo: []
+        }
+      });
+      console.log('OK.');
+      //console.log(response);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  RestTest();
+</script>
+
+</html>
